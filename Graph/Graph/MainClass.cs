@@ -9,6 +9,4 @@ namespace Graph
             Console.WriteLine("Hello World!");
         }
     }
-
-
 }

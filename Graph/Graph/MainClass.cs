@@ -8,8 +8,8 @@ namespace Graph
         {
             int[] i = {0, 1, 2, 1, 0};
             int[] j = {1, 2, 3, 3, 2};
-            var grapgh = new Graph(i,j);
-            grapgh.Print();
+            var graph = new Graph(i, j);
+            graph.Print();
         }
     }
 }

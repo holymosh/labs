@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Graph
@@ -36,6 +37,18 @@ namespace Graph
             {
                 Console.Write(reference + " ");
             }
+            if (!Directory.Exists(@"C:\graph"))
+            {
+                Directory.CreateDirectory(@"C:\graph");
+            }
+            var writer = new StreamWriter(@"C:\graph\graph.gv");
+            writer.WriteLine("graph photograph{");
+            for (int i = 0; i < Heads.Count; i = i + 2)
+            {
+                writer.WriteLine(Heads[i] + "--" + Tails[i] + ";");
+            }
+            writer.Write("}");
+            writer.Close();
         }
 
         private void CreateArcList()

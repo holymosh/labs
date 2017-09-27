@@ -15,10 +15,6 @@ namespace Graph
         {
             Heads = new List<int>(heads);
             Tails = new List<int>(tails);
-            //HeadsList = new List<int>(Heads.Concat(Tails).Max()+1);
-            var count = Heads.Concat(Tails).Max() + 1;
-            HeadsList = Enumerable.Repeat(-1, count).ToList();
-            References = new List<int>(Heads.Count);
             CreateArcList();
         }
 
@@ -26,23 +22,27 @@ namespace Graph
         {
             Heads.Add(head);
             Tails.Add(tail);
+            CreateArcList();
         }
 
         public void Print()
         {
             foreach (var head in HeadsList)
             {
-                Console.Write(head);
+                Console.Write(head + " ");
             }
             Console.WriteLine();
             foreach (var reference in References)
             {
-                Console.Write(reference);
+                Console.Write(reference + " ");
             }
         }
 
         private void CreateArcList()
         {
+            var count = Heads.Concat(Tails).Max() + 1;
+            HeadsList = Enumerable.Repeat(-1, count).ToList();
+            References = new List<int>(Heads.Count);
             for (int k = 0; k < Heads.Count; k++)
             {
                 var i = Heads[k];

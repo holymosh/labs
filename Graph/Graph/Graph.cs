@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Graph
 {
@@ -13,8 +15,11 @@ namespace Graph
         {
             Heads = new List<int>(heads);
             Tails = new List<int>(tails);
-            HeadsList = new List<int>(Heads.Count);
+            //HeadsList = new List<int>(Heads.Concat(Tails).Max()+1);
+            var count = Heads.Concat(Tails).Max() + 1;
+            HeadsList = Enumerable.Repeat(-1, count).ToList();
             References = new List<int>(Heads.Count);
+            CreateArcList();
         }
 
         public void Add(int head, int tail)
@@ -25,18 +30,23 @@ namespace Graph
 
         public void Print()
         {
+            foreach (var head in HeadsList)
+            {
+                Console.Write(head);
+            }
+            Console.WriteLine();
+            foreach (var reference in References)
+            {
+                Console.Write(reference);
+            }
         }
 
         private void CreateArcList()
         {
-            for (int index = 0; index < HeadsList.Count; index++)
-            {
-                HeadsList[index] = -1;
-            }
-            for (int k = 0; k < References.Count; k++)
+            for (int k = 0; k < Heads.Count; k++)
             {
                 var i = Heads[k];
-                References[k] = HeadsList[i];
+                References.Add(HeadsList[i]);
                 HeadsList[i] = k;
             }
         }

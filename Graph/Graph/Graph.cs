@@ -74,14 +74,26 @@ namespace Graph
             }
         }
 
-        public void DepthFirstSearch(int vertex, int currentComponent)
+        public void ConnectedComponent(int node)
         {
-            Colors[vertex] = currentComponent;
+            var currentColor = 0;
+            for (int vertex = 0; vertex < References.Count; vertex++)
+            {
+                if (Colors[vertex].Equals(-1))
+                {
+                    DepthFirstSearch(vertex,currentColor++);
+                }
+            }
+        }
+
+        private void DepthFirstSearch(int vertex, int color)
+        {
+            Colors[vertex] = color;
             for (int index = HeadsList[vertex] = 0; !index.Equals(-1); index = References[index])
             {
                 if (Colors[HeadsTails[index].Value].Equals(-1))
                 {
-                    DepthFirstSearch(HeadsTails[index].Value , currentComponent);
+                    DepthFirstSearch(HeadsTails[index].Value , color);
                 }
             }
         }

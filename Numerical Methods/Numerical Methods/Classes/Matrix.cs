@@ -10,10 +10,19 @@ namespace Numerical_Methods.Classes
         public int Height => _matrix.GetLength(0);
         public double[,] GetArray => _matrix;
 
-        public Matrix(IMatrix matrix)
+        public IMatrix CreateTransposedMatrix()
         {
-
+            var matrix = new Matrix(Height,Width);
+            for (int row = 0; row < Height; row++)
+            {
+                for (int column = 0; column < Width; column++)
+                {
+                    matrix[column, row] = _matrix[row, column];
+                }
+            }
+            return matrix;
         }
+
 
         public Matrix(double[,] matrix)
         {
@@ -29,6 +38,49 @@ namespace Numerical_Methods.Classes
         {
             get => _matrix[row, column];
             set => _matrix[row, column] = value;
+        }
+
+        public IMatrix Multiply(double value)
+        {
+            var newMatrix = new double[Height,Width];
+            for (int row = 0; row < Height; row++)
+            {
+                for (int column = 0; column < Width; column++)
+                {
+                    newMatrix[row, column] = _matrix[row, column] * value;
+                }
+            }
+            return new Matrix(newMatrix);
+        }
+
+        public double MultiplyElementsOnMainDiagonal()
+        {
+            double result = 1;
+            for (int row = 0; row < Height; row++)
+            {
+                result *= _matrix[row, row];
+            }
+            return result;
+        }
+
+        public IMatrix Multiply(IMatrix matrix)
+        {
+            if (!Width.Equals(matrix.Height))
+            {
+                throw new ArgumentException("can't multiply");
+            }
+            var newMatrix = new double[Height,matrix.Width];
+            for (int row = 0; row < Height; row++)
+            {
+                for (int column = 0; column < matrix.Width; column++)
+                {
+                    for (int k = 0; k < matrix.Height; k++)
+                    {
+                        newMatrix[row, column] += _matrix[row, k] * matrix[k, row];
+                    }
+                }
+            }
+            return new Matrix(newMatrix);
         }
 
         public ILuDecomposition CreateLuDecomposition()
@@ -64,22 +116,22 @@ namespace Numerical_Methods.Classes
             }
             IMatrix matrixL = new Matrix(L);
             IMatrix matrixU = new Matrix(U);
-            ILuDecomposition decomposition = new LuDecomposition(matrixL,matrixU);
-            return decomposition;
+            return new LuDecomposition(matrixL,matrixU);
         }
 
 
         public void Print()
         {
-            for (int row = 0; row < Width; row++)
+            for (int row = 0; row < Height; row++)
             {
-                for (int column = 0; column < Height; column++)
+                for (int column = 0; column < Width; column++)
                 {
                     Console.Write($"{_matrix[row,column]} ");
                 }
                 Console.WriteLine();
             }
         }
+
     }
 }
 

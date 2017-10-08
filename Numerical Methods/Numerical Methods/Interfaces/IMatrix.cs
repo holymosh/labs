@@ -8,5 +8,10 @@ namespace Numerical_Methods.Interfaces
         int Height { get; }
         ILuDecomposition CreateLuDecomposition();
         double[,] GetArray { get; }
+        IMatrix CreateTransposedMatrix();
+        double this[int row, int i] { get; }
+        IMatrix Multiply(double value);
+        double MultiplyElementsOnMainDiagonal();
+        IMatrix Multiply(IMatrix matrix);
     }
 }

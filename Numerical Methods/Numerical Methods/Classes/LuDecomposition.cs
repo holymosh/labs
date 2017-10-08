@@ -12,6 +12,14 @@ namespace Numerical_Methods.Classes
 
         public IMatrix GetMatrixU => U;
 
+        public IMatrix CalculateReverseMatrix()
+        {
+            var revesedU = U.CreateTransposedMatrix().Multiply(1/U.MultiplyElementsOnMainDiagonal());
+            var reversedL = L.CreateTransposedMatrix().Multiply(1/L.MultiplyElementsOnMainDiagonal());
+            return revesedU.Multiply(reversedL);
+        }
+
+
         public LuDecomposition(IMatrix l, IMatrix u)
         {
             L = l;

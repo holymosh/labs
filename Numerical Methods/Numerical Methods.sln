@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Numerical Methods", "Numerical Methods\Numerical Methods.csproj", "{6E2670AD-E313-4D0C-98BB-5E280111C218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z8", "z8\z8.csproj", "{53EA995D-9E94-4E02-9783-2602C199B530}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task8", "z8\Task8.csproj", "{53EA995D-9E94-4E02-9783-2602C199B530}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z7", "z7\z7.csproj", "{BA108A07-1B0E-412C-8E05-91D04DAB6EA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task7", "z7\Task7.csproj", "{BA108A07-1B0E-412C-8E05-91D04DAB6EA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

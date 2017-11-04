@@ -13,5 +13,6 @@ namespace Numerical_Methods.Interfaces
         IMatrix Multiply(double value);
         double MultiplyElementsOnMainDiagonal();
         IMatrix Multiply(IMatrix matrix);
+        double MultiplyElementsOnMainDiagonalWithoutElementsOnCustomRowAndColumn(int row,int column);
     }
 }

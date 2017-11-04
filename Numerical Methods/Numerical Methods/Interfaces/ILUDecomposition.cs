@@ -5,5 +5,6 @@
         IMatrix GetMatrixL { get; }
         IMatrix GetMatrixU { get; }
         IMatrix CalculateReverseMatrix();
+        IMatrix JoinLU();
     }
 }

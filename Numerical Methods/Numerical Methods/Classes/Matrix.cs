@@ -10,6 +10,31 @@ namespace Numerical_Methods.Classes
         public int Height => _matrix.GetLength(0);
         public double[,] GetArray => _matrix;
 
+        public static IMatrix ReverseTringularMatrix(IMatrix matrix)
+        {
+            var values = new Double[matrix.Height,matrix.Width];
+            for (int row = 0; row < matrix.Height; row++)
+            {
+                for (int column = 0; column < matrix.Width; column++)
+                {
+                    if (matrix[row,column].Equals(0))
+                    {
+                        values[row, column] = 0;
+                    }
+                    else
+                    {
+                        var minusOrPlus = ((row + column) % 2).Equals(0) ? 1 : -1;
+                        values[row, column] = minusOrPlus *
+                                              matrix.MultiplyElementsOnMainDiagonalWithoutElementsOnCustomRowAndColumn(
+                                                  row, column);
+                    }
+                }
+            }
+            new Matrix(values).Print();
+
+            return new Matrix(values);
+        }
+
         public IMatrix CreateTransposedMatrix()
         {
             var matrix = new Matrix(Height,Width);
@@ -83,6 +108,20 @@ namespace Numerical_Methods.Classes
             return new Matrix(newMatrix);
         }
 
+        public double MultiplyElementsOnMainDiagonalWithoutElementsOnCustomRowAndColumn(int row, int column)
+        {
+            var result = 1.0;
+            for (int index = 0; index < Height; index++)
+            {
+                if (!(index.Equals(row)||index.Equals(column)))
+                {
+                    result *= _matrix[index, index];
+                }
+            }
+            return result;
+        }
+
+
         public ILuDecomposition CreateLuDecomposition()
         {
             double[,] L = new double[Width, Width];
@@ -122,14 +161,16 @@ namespace Numerical_Methods.Classes
 
         public void Print()
         {
+            Console.WriteLine();
             for (int row = 0; row < Height; row++)
             {
                 for (int column = 0; column < Width; column++)
                 {
-                    Console.Write($"{_matrix[row,column]} ");
+                    Console.Write($"{_matrix[row,column]} \t");
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
     }

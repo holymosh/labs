@@ -37,11 +37,14 @@ namespace Numerical_Methods.Models
         {
             var N = 3;
             int i, j;
-            double[] x0;
+            double[] x0 = { };
             double delta;
             double[] E = new double[N];
             double[] x = new double[N];
-            x0 = b;
+            for (int k = 0; k < b.RowCount; k++)
+            {
+                x0[0] = b[k];
+            }
 
             do
             {

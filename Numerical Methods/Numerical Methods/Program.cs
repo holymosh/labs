@@ -1,16 +1,10 @@
 ﻿#region  //usings
 
 using System;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.InteropServices.ComTypes;
-using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Double.Solvers;
-using MathNet.Numerics.LinearAlgebra.Solvers;
 using Matrix = MathNet.Numerics.LinearAlgebra.Double.DenseMatrix;
-using LU = MathNet.Numerics.LinearAlgebra.Factorization.LU<double>;
-
+using static Numerical_Methods.Trick;
 #endregion
+
 
 namespace Numerical_Methods
 {
@@ -19,21 +13,14 @@ namespace Numerical_Methods
         static void Main(string[] args)
         {
             var program = new Program();
-            program.Task8();
+            program.Task5();
         }
+
 
         public void Task5()
         {
-        }
-
-        public void Task7()
-        {
-        }
-
-        public void Task8()
-        {
-            // LU
-            Console.WriteLine("LU");
+            // qr
+            Console.WriteLine("qr");
             var A = Matrix.OfArray(new double[3, 3]
             {
                 {1, 2, 3},
@@ -46,17 +33,51 @@ namespace Numerical_Methods
                 {0},
                 {1}
             });
-            var X = A.LU().Solve(B);
-            for (int i = 0; i < X.RowCount; i++)
+            var qr = A.QR();
+            var q = qr.Q;
+            var r = qr.R;
+            Console.WriteLine("Q");
+            Console.WriteLine();
+            for (int i = 0; i < q.RowCount; i++)
             {
-                for (int j = 0; j < X.ColumnCount; j++)
+                for (int j = 0; j < q.ColumnCount; j++)
                 {
-                    Console.Write($"{X[i, j]} ");
+                    Console.Write(q[i,j]+" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("R");
+            Console.WriteLine();
+            for (int i = 0; i < r.RowCount; i++)
+            {
+                for (int j = 0; j < r.ColumnCount; j++)
+                {
+                    Console.Write(r[i, j]+" ");
+                }
+                Console.WriteLine();
+            }
+            var solvedViaQr = qr.Solve(B);
+            Console.WriteLine("result");
+            for (int i = 0; i < solvedViaQr.RowCount; i++)
+            {
+                for (int j = 0; j < solvedViaQr.ColumnCount; j++)
+                {
+                    Console.Write(solvedViaQr[i, j] + " ");
+                }
+                Console.WriteLine();
+            }   
+            Console.WriteLine("solved via Iteration");
+            Console.WriteLine();
+            var solvedViaIteration = A.SolveViaIterationMethod(B);
+            for (int i = 0; i < solvedViaIteration.RowCount; i++)
+            {
+                for (int j = 0; j < solvedViaIteration.ColumnCount; j++)
+                {
+                    Console.Write(solvedViaIteration[i, j] + " ");
                 }
                 Console.WriteLine();
             }
 
-            // roots method ( cholesky factorization)
         }
     }
 }

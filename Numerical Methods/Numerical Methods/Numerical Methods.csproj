@@ -46,15 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\MathNetClasses.cs" />
-    <Compile Include="Interfaces\ILUDecomposition.cs" />
-    <Compile Include="Interfaces\IMatrix.cs" />
-    <Compile Include="Interfaces\IPrintable.cs" />
-    <Compile Include="Classes\LuDecomposition.cs" />
-    <Compile Include="Classes\Matrix.cs" />
-    <Compile Include="Models\Cholesky.cs" />
-    <Compile Include="Models\LU.cs" />
+    <Compile Include="Extension\Trick.cs" />
     <Compile Include="Models\Matrix.cs" />
+    <Compile Include="Models\QR.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

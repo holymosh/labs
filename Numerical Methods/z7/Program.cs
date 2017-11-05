@@ -137,9 +137,6 @@ public class Program
 
     public static void Main(String[] args)
     {
-        int i, j;
-        int size;
-
         wrachenie();
     }
 }

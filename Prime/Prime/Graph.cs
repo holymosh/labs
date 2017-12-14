@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
@@ -159,6 +160,14 @@ namespace Prime
                 }
                 writer.Write("}");
             }
+
+            
+            var info = new ProcessStartInfo(@"C:\graphviz-2.38\release\bin\dot.exe",
+                $@"-Tpng C:\Users\MI\Documents\labs\Prime\Prime\bin\Debug\{filename} -o C:\holymosh\Result.png");
+            Process.Start(info);
+            Process.Start(@"C:\holymosh\Result.png");
+
+
         }
     }
 }

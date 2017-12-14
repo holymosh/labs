@@ -1,0 +1,12 @@
+{"VertexCount":7,"Edges":[
+{"FirstVertex":1,"SecondVertex":2,"Weight":7},
+{"FirstVertex":2,"SecondVertex":3,"Weight":8},
+{"FirstVertex":1,"SecondVertex":4,"Weight":5},
+{"FirstVertex":2,"SecondVertex":4,"Weight":9},
+{"FirstVertex":2,"SecondVertex":5,"Weight":7},
+{"FirstVertex":3,"SecondVertex":5,"Weight":5},
+{"FirstVertex":4,"SecondVertex":5,"Weight":15},
+{"FirstVertex":4,"SecondVertex":6,"Weight":6},
+{"FirstVertex":5,"SecondVertex":6,"Weight":8},
+{"FirstVertex":5,"SecondVertex":7,"Weight":9},
+{"FirstVertex":6,"SecondVertex":7,"Weight":11}]}

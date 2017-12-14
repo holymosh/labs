@@ -14,6 +14,7 @@ namespace Prime
             VertexCount = 0;
         }
 
+
         public Graph(List<Edge> edges, int vertexCount)
         {
             Edges = edges;
@@ -119,9 +120,9 @@ namespace Prime
         public static Graph ReadFromFile(string filename)
         {
             string notDeserialized;
-            using (var reader = new StreamReader($@"C:\Users\MI\source\repos\Prime\Prime\{filename}"))
+            using (var reader = new StreamReader(filename))
             {
-                 notDeserialized = reader.ReadToEnd();
+                notDeserialized = reader.ReadToEnd();
             }
             return JsonConvert.DeserializeObject<Graph>(notDeserialized);
         }
@@ -134,6 +135,27 @@ namespace Prime
                 foreach (var edge in Edges)
                 {
                     writer.WriteLine($"{edge.FirstVertex} -- {edge.SecondVertex} [label={edge.Weight},weight={edge.Weight}]");
+                }
+                writer.Write("}");
+            }
+        }
+
+        public void SaveGraphWithMST(string filename)
+        {
+            using (var writer = new StreamWriter(filename))
+            {
+                var MST = GetMinimumSpanningTree();
+                writer.WriteLine("graph {");
+                foreach (var edge in Edges)
+                {
+                    if (MST.Edges.Contains(edge))
+                    {
+                    writer.WriteLine($"{edge.FirstVertex} -- {edge.SecondVertex} [label={edge.Weight},weight={edge.Weight},color=green]");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"{edge.FirstVertex} -- {edge.SecondVertex} [label={edge.Weight},weight={edge.Weight}]");
+                    }
                 }
                 writer.Write("}");
             }

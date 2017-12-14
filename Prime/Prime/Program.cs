@@ -11,12 +11,7 @@ namespace Prime
             var graph = Graph.ReadFromFile("graph.txt");
             graph.SaveToGraphizFormat("source.gv");
             Console.WriteLine(graph.VertexCount);
-            var spanningTree = graph.GetMinimumSpanningTree();
-            spanningTree.SaveToGraphizFormat("result.gv");
-            foreach (var edge in spanningTree.Edges)
-            {
-                Console.WriteLine($"{edge.FirstVertex} , {edge.SecondVertex} , {edge.Weight}");
-            }
+            graph.SaveGraphWithMST("withmst.gv");
         }
 
         //алгоритм Прима

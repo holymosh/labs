@@ -62,10 +62,6 @@ namespace Prime
             {
                 int minE = -1; //номер наименьшего ребра
                 //поиск наименьшего ребра
-                if (notUsedEdges.Count.Equals(6))
-                {
-                    Console.WriteLine("here");
-                }
                 for (int i = 0; i < notUsedEdges.Count; i++)
                 {
                     if (usedVertexes.Contains(notUsedEdges[i].FirstVertex) &&

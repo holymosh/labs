@@ -30,10 +30,10 @@ public class ParentTree
         private List<int> FindAllTreeEnds()
         {
             var result = new List<int>();
-            foreach (var node in ParentsToChild) //находим все вершины у которых нет дочерних
+            for(int i=0 ; i<ParentsToChild.Length;i++) //находим все вершины у которых нет дочерних
             {
-                if (!ParentsToChild.Contains(node))
-                    result.Add(node);
+                if (!ParentsToChild.Contains(i))
+                    result.Add(i);
             }
             return result;
         }

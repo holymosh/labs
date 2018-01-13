@@ -60,8 +60,12 @@ namespace Prime
             notUsedVertexes.RemoveAt(usedVertexes[0]);
             while (notUsedEdges.Count > 0)
             {
-                int minE = -1; //номер наименьшего ребра
-                //поиск наименьшего ребра
+                int minE = -1;
+                //номер наименьшего ребра
+                //поиск наименьшего ребра находится ребро, инцидентное данной вершине и обладающее наименьшей стоимостью. 
+                //Найденное ребро и соединяемые им две вершины образуют дерево. 
+                //Затем, рассматриваются рёбра графа, один конец которых — уже принадлежащая дереву вершина, 
+                //а другой — нет; из этих рёбер выбирается ребро наименьшей стоимости.
                 for (int i = 0; i < notUsedEdges.Count; i++)
                 {
                     if (usedVertexes.Contains(notUsedEdges[i].FirstVertex) &&
@@ -142,7 +146,8 @@ namespace Prime
             using (var writer = new StreamWriter(filename))
             {
                 var MST = GetMinimumSpanningTree();
-                writer.WriteLine("graph {");
+                writer.WriteLine("graph {" +
+                                 "rankdir=\"LR\";");
                 foreach (var edge in Edges)
                 {
                     if (MST.Edges.Contains(edge))

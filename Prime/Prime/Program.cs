@@ -10,11 +10,8 @@ namespace Prime
         {
             var graph = Graph.ReadFromFile("graph.txt");
             graph.SaveToGraphizFormat("source.gv");
-            Console.WriteLine(graph.VertexCount);
             graph.SaveGraphWithMST("kok.gv");
         }
-
-        //алгоритм Прима
 
     }
 
